@@ -1,3 +1,4 @@
+const axios = require('axios');
 const express = require('express');
 
 const server = express();
@@ -11,9 +12,12 @@ server.use((req, res, next) => {
   console.timeEnd('Request');
 });
 
-server.get('/teste', (req, res) => {
-  console.log('teste');
-  return res.json({ teste1: 'teste2' });
+server.post('/', async (req, res) => {
+  const { data } = await axios.post(
+    'https://api.suthubservice.com/hml/public/newdash?db=suthub'
+  );
+
+  return res.json(data.user);
 });
 
 server.listen(3001);
