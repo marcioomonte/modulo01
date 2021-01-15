@@ -17,6 +17,10 @@ server.post('/', async (req, res) => {
     'https://api.suthubservice.com/hml/public/newdash?db=suthub'
   );
 
+  res.set({
+    User: data.user,
+  });
+
   return res.json(data.user);
 });
 
